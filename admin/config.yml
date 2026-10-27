@@ -1,0 +1,56 @@
+backend:
+  name: github
+  repo: sbankov-gif/SPCRPB
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "research"
+    label: "Исследования"
+    folder: "content/research"
+    create: true
+    extension: "json"
+    format: "json"
+    fields:
+      - { name: "id", label: "ID", widget: "string" }
+      - { name: "title", label: "Название", widget: "string" }
+      - { name: "lead", label: "Описание", widget: "text" }
+      - { name: "dateStart", label: "Дата начала", widget: "string" }
+      - { name: "dateEnd", label: "Дата окончания", widget: "string" }
+      - { name: "category", label: "Категория", widget: "string" }
+      - { name: "status", label: "Статус", widget: "select", options: ["planned", "published"] }
+      - { name: "statusLabel", label: "Текст статуса", widget: "string" }
+      - { name: "statusClass", label: "Цвет статуса", widget: "select", options: ["status--planned", "status--done"] }
+      - { name: "goal", label: "Цель", widget: "text" }
+      - { name: "method", label: "Метод", widget: "text" }
+      - { name: "sample", label: "Аудитория", widget: "text" }
+      - { name: "participants", label: "Участники", widget: "number", required: false }
+      - { name: "question", label: "Вопрос", widget: "string" }
+      - { name: "limits", label: "Ограничения", widget: "text" }
+
+  - name: "ratings"
+    label: "Рейтинги"
+    folder: "content/ratings"
+    create: true
+    extension: "json"
+    format: "json"
+    fields:
+      - { name: "id", label: "ID", widget: "string" }
+      - { name: "title", label: "Название", widget: "string" }
+      - { name: "category", label: "Категория", widget: "string" }
+      - { name: "date", label: "Дата", widget: "string" }
+      - { name: "researchId", label: "ID исследования", widget: "string" }
+      - { name: "participants", label: "Участники", widget: "number" }
+      - { name: "lead", label: "Описание", widget: "text" }
+      - { name: "summary", label: "Выводы", widget: "text" }
+      - { name: "methodNote", label: "Методология", widget: "text" }
+      - { name: "showMap", label: "Показывать карту", widget: "boolean" }
+      - name: "items"
+        label: "Показатели"
+        widget: "list"
+        fields:
+          - { name: "label", label: "Партия", widget: "string" }
+          - { name: "value", label: "Процент", widget: "number", value_type: "float" }
+          - { name: "color", label: "Цвет", widget: "string" }
