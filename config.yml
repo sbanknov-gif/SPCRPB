@@ -1,0 +1,58 @@
+backend:
+  name: github
+  repo: sbanknov-gif/SPCRPB
+  branch: main
+  # base_url НЕ указываем — CMS будет спрашивать токен напрямую
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "research"
+    label: "Исследования"
+    folder: "content/research"
+    create: true
+    fields:
+      - { name: "title", label: "Название", widget: "string" }
+      - { name: "dateStart", label: "Дата начала", widget: "string" }
+      - { name: "dateEnd", label: "Дата окончания", widget: "string" }
+      - { name: "category", label: "Категория", widget: "select", options: ["Партийные рейтинги", "Городская среда", "Доверие губернатору", "Социально-экономические вопросы", "Общественные настроения"] }
+      - { name: "status", label: "Статус", widget: "select", options: ["planned", "published"] }
+      - { name: "lead", label: "Краткое описание", widget: "text" }
+      - { name: "goal", label: "Цель исследования", widget: "text" }
+      - { name: "method", label: "Метод сбора", widget: "text" }
+      - { name: "sample", label: "Аудитория", widget: "text" }
+      - { name: "participants", label: "Число участников", widget: "number", required: false }
+      - { name: "question", label: "Основной вопрос", widget: "string" }
+      - { name: "limits", label: "Ограничения", widget: "text" }
+      - { name: "formLink", label: "Ссылка на Google Forms", widget: "string", required: false }
+
+  - name: "ratings"
+    label: "Рейтинги"
+    folder: "content/ratings"
+    create: true
+    fields:
+      - { name: "title", label: "Название", widget: "string" }
+      - { name: "category", label: "Категория", widget: "string" }
+      - { name: "date", label: "Дата исследования", widget: "string" }
+      - { name: "lead", label: "Описание", widget: "text" }
+      - { name: "summary", label: "Краткие выводы", widget: "text" }
+      - name: "items"
+        label: "Показатели"
+        widget: "list"
+        fields:
+          - { name: "label", label: "Партия / Вариант", widget: "string" }
+          - { name: "value", label: "Процент", widget: "number", value_type: "float" }
+          - { name: "color", label: "Цвет (yabloko/golos/alt2)", widget: "string" }
+
+  - name: "publications"
+    label: "Публикации"
+    folder: "content/publications"
+    create: true
+    fields:
+      - { name: "title", label: "Заголовок", widget: "string" }
+      - { name: "type", label: "Тип", widget: "select", options: ["Исследование", "Аналитический обзор", "Методология"] }
+      - { name: "category", label: "Категория", widget: "string" }
+      - { name: "date", label: "Дата", widget: "string" }
+      - { name: "lead", label: "Лид", widget: "text" }
+      - { name: "body", label: "Текст", widget: "markdown" }
