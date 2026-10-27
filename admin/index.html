@@ -7,9 +7,11 @@
 </head>
 <body>
   <script>
-    // Отключаем поиск внешнего файла и передаем конфиг напрямую
+    // 1. Отключаем поиск внешнего файла
     window.CMS_CONFIG = {
       load_config_file: false, 
+      
+      // 2. Настройки бэкенда
       backend: {
         name: "github",
         repo: "sbankov-gif/SPCRPB",
@@ -17,6 +19,8 @@
       },
       media_folder: "images",
       public_folder: "/images",
+      
+      // 3. Коллекции
       collections: [
         {
           name: "research",
@@ -26,7 +30,7 @@
           extension: "json",
           format: "json",
           fields: [
-            { name: "id", label: "ID", widget: "string" },
+            { name: "id", label: "ID (латиницей)", widget: "string" },
             { name: "title", label: "Название", widget: "string" },
             { name: "dateStart", label: "Дата начала", widget: "string" },
             { name: "dateEnd", label: "Дата окончания", widget: "string" },
