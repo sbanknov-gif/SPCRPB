@@ -4,10 +4,48 @@
   <meta charset="utf-8" />
   <meta name="robots" content="noindex" />
   <title>Управление сайтом</title>
-  <!-- Правильный путь к файлу конфигурации -->
-  <link href="./config.json" type="application/json" rel="cms-config-url" />
 </head>
 <body>
+  <script>
+    // Отключаем поиск внешнего файла и передаем конфиг напрямую
+    window.CMS_CONFIG = {
+      load_config_file: false, 
+      backend: {
+        name: "github",
+        repo: "sbankov-gif/SPCRPB",
+        branch: "main"
+      },
+      media_folder: "images",
+      public_folder: "/images",
+      collections: [
+        {
+          name: "research",
+          label: "Исследования",
+          folder: "content/research",
+          create: true,
+          extension: "json",
+          format: "json",
+          fields: [
+            { name: "id", label: "ID", widget: "string" },
+            { name: "title", label: "Название", widget: "string" },
+            { name: "dateStart", label: "Дата начала", widget: "string" },
+            { name: "dateEnd", label: "Дата окончания", widget: "string" },
+            { name: "category", label: "Категория", widget: "select", options: ["Партийные рейтинги", "Городская среда", "Доверие губернатору"] },
+            { name: "status", label: "Статус", widget: "select", options: ["planned", "published"] },
+            { name: "statusLabel", label: "Текст статуса", widget: "string" },
+            { name: "statusClass", label: "Цвет статуса", widget: "select", options: ["status--planned", "status--done"] },
+            { name: "lead", label: "Краткое описание", widget: "text" },
+            { name: "goal", label: "Цель исследования", widget: "text" },
+            { name: "method", label: "Метод сбора", widget: "text" },
+            { name: "sample", label: "Аудитория", widget: "text" },
+            { name: "participants", label: "Число участников", widget: "number", required: false },
+            { name: "question", label: "Основной вопрос", widget: "string" },
+            { name: "limits", label: "Ограничения", widget: "text" }
+          ]
+        }
+      ]
+    };
+  </script>
   <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 </body>
 </html>
