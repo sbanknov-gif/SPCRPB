@@ -1,75 +1,87 @@
-backend:
-  name: github
-  repo: sbankov-gif/SPCRPB
-  branch: main
-
-media_folder: "images"
-public_folder: "/images"
-
-collections:
-  - name: "research"
-    label: "Исследования"
-    folder: "content/research"
-    create: true
-    extension: "json"
-    format: "json"
-    fields:
-      - { name: "id", label: "ID (латиницей без пробелов)", widget: "string" }
-      - { name: "title", label: "Название", widget: "string" }
-      - { name: "dateStart", label: "Дата начала", widget: "string" }
-      - { name: "dateEnd", label: "Дата окончания", widget: "string" }
-      - { name: "datePub", label: "Дата публикации", widget: "string", required: false }
-      - { name: "category", label: "Категория", widget: "select", options: ["Партийные рейтинги", "Городская среда", "Доверие губернатору", "Социально-экономические вопросы", "Общественные настроения"] }
-      - { name: "status", label: "Статус", widget: "select", options: ["planned", "published"] }
-      - { name: "statusLabel", label: "Текст статуса (Опубликовано/Скоро стартует)", widget: "string" }
-      - { name: "statusClass", label: "Цвет статуса", widget: "select", options: ["status--planned", "status--done"] }
-      - { name: "lead", label: "Краткое описание", widget: "text" }
-      - { name: "goal", label: "Цель исследования", widget: "text" }
-      - { name: "method", label: "Метод сбора", widget: "text" }
-      - { name: "sample", label: "Аудитория", widget: "text" }
-      - { name: "participants", label: "Число участников", widget: "number", required: false }
-      - { name: "question", label: "Основной вопрос", widget: "string" }
-      - { name: "calc", label: "Расчёт процентов", widget: "string" }
-      - { name: "limits", label: "Ограничения", widget: "text" }
-      - { name: "formLink", label: "Ссылка на Google Forms", widget: "string", required: false }
-
-  - name: "ratings"
-    label: "Рейтинги"
-    folder: "content/ratings"
-    create: true
-    extension: "json"
-    format: "json"
-    fields:
-      - { name: "id", label: "ID (латиницей)", widget: "string" }
-      - { name: "title", label: "Название", widget: "string" }
-      - { name: "category", label: "Категория", widget: "string" }
-      - { name: "date", label: "Дата исследования", widget: "string" }
-      - { name: "datePub", label: "Дата публикации", widget: "string" }
-      - { name: "researchId", label: "ID исследования (к которому привязан)", widget: "string" }
-      - { name: "participants", label: "Число участников", widget: "number" }
-      - { name: "lead", label: "Описание", widget: "text" }
-      - { name: "summary", label: "Краткие выводы", widget: "text" }
-      - name: "items"
-        label: "Показатели (Партии и проценты)"
-        widget: "list"
-        fields:
-          - { name: "label", label: "Партия / Вариант", widget: "string" }
-          - { name: "value", label: "Процент", widget: "number", value_type: "float" }
-          - { name: "color", label: "Цвет (yabloko/golos/alt2)", widget: "string" }
-      - { name: "methodNote", label: "Методология", widget: "text" }
-      - { name: "showMap", label: "Показывать карту", widget: "boolean" }
-
-  - name: "publications"
-    label: "Публикации"
-    folder: "content/publications"
-    create: true
-    extension: "json"
-    format: "json"
-    fields:
-      - { name: "id", label: "ID (латиницей)", widget: "string" }
-      - { name: "title", label: "Заголовок", widget: "string" }
-      - { name: "type", label: "Тип", widget: "select", options: ["Исследование", "Аналитический обзор", "Методология"] }
-      - { name: "category", label: "Категория", widget: "string" }
-      - { name: "date", label: "Дата", widget: "string" }
-      - { name: "lead", label: "Лид", widget: "text" }
-      - { name: "body", label: "Текст", widget: "markdown" }
+{
+  "backend": {
+    "name": "github",
+    "repo": "sbankov-gif/SPCRPB",
+    "branch": "main"
+  },
+  "media_folder": "images",
+  "public_folder": "/images",
+  "collections": [
+    {
+      "name": "research",
+      "label": "Исследования",
+      "folder": "content/research",
+      "create": true,
+      "extension": "json",
+      "format": "json",
+      "fields": [
+        { "name": "id", "label": "ID (латиницей без пробелов)", "widget": "string" },
+        { "name": "title", "label": "Название", "widget": "string" },
+        { "name": "dateStart", "label": "Дата начала", "widget": "string" },
+        { "name": "dateEnd", "label": "Дата окончания", "widget": "string" },
+        { "name": "datePub", "label": "Дата публикации", "widget": "string", "required": false },
+        { "name": "category", "label": "Категория", "widget": "select", "options": ["Партийные рейтинги", "Городская среда", "Доверие губернатору", "Социально-экономические вопросы", "Общественные настроения"] },
+        { "name": "status", "label": "Статус", "widget": "select", "options": ["planned", "published"] },
+        { "name": "statusLabel", "label": "Текст статуса (Опубликовано/Скоро стартует)", "widget": "string" },
+        { "name": "statusClass", "label": "Цвет статуса", "widget": "select", "options": ["status--planned", "status--done"] },
+        { "name": "lead", "label": "Краткое описание", "widget": "text" },
+        { "name": "goal", "label": "Цель исследования", "widget": "text" },
+        { "name": "method", "label": "Метод сбора", "widget": "text" },
+        { "name": "sample", "label": "Аудитория", "widget": "text" },
+        { "name": "participants", "label": "Число участников", "widget": "number", "required": false },
+        { "name": "question", "label": "Основной вопрос", "widget": "string" },
+        { "name": "calc", "label": "Расчёт процентов", "widget": "string" },
+        { "name": "limits", "label": "Ограничения", "widget": "text" },
+        { "name": "formLink", "label": "Ссылка на Google Forms", "widget": "string", "required": false }
+      ]
+    },
+    {
+      "name": "ratings",
+      "label": "Рейтинги",
+      "folder": "content/ratings",
+      "create": true,
+      "extension": "json",
+      "format": "json",
+      "fields": [
+        { "name": "id", "label": "ID (латиницей)", "widget": "string" },
+        { "name": "title", "label": "Название", "widget": "string" },
+        { "name": "category", "label": "Категория", "widget": "string" },
+        { "name": "date", "label": "Дата исследования", "widget": "string" },
+        { "name": "datePub", "label": "Дата публикации", "widget": "string" },
+        { "name": "researchId", "label": "ID исследования (к которому привязан)", "widget": "string" },
+        { "name": "participants", "label": "Число участников", "widget": "number" },
+        { "name": "lead", "label": "Описание", "widget": "text" },
+        { "name": "summary", "label": "Краткие выводы", "widget": "text" },
+        {
+          "name": "items",
+          "label": "Показатели (Партии и проценты)",
+          "widget": "list",
+          "fields": [
+            { "name": "label", "label": "Партия / Вариант", "widget": "string" },
+            { "name": "value", "label": "Процент", "widget": "number", "value_type": "float" },
+            { "name": "color", "label": "Цвет (yabloko/golos/alt2)", "widget": "string" }
+          ]
+        },
+        { "name": "methodNote", "label": "Методология", "widget": "text" },
+        { "name": "showMap", "label": "Показывать карту", "widget": "boolean" }
+      ]
+    },
+    {
+      "name": "publications",
+      "label": "Публикации",
+      "folder": "content/publications",
+      "create": true,
+      "extension": "json",
+      "format": "json",
+      "fields": [
+        { "name": "id", "label": "ID (латиницей)", "widget": "string" },
+        { "name": "title", "label": "Заголовок", "widget": "string" },
+        { "name": "type", "label": "Тип", "widget": "select", "options": ["Исследование", "Аналитический обзор", "Методология"] },
+        { "name": "category", "label": "Категория", "widget": "string" },
+        { "name": "date", "label": "Дата", "widget": "string" },
+        { "name": "lead", "label": "Лид", "widget": "text" },
+        { "name": "body", "label": "Текст", "widget": "markdown" }
+      ]
+    }
+  ]
+}
